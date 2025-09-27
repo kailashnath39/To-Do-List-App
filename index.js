@@ -1,8 +1,8 @@
-function deleteTask(id) {
-	const d = document;
-	const q = `.taskContainer[id='${id}']`;
-	const ele = d.querySelector(q);
-	d.getElementsByClassName("taskListContainer")[0].removeChild(ele);
+function deleteTask(event) {
+	const taskContainer = event.currentTarget.closest(".taskContainer");
+	const taskListContainer = event.currentTarget.closest(".taskListContainer");
+	tasks.splice(parseInt(taskContainer.getAttribute("id")), 1);
+	taskListContainer.removeChild(taskContainer);
 }
 
 function changeStyleStatus(event) {
@@ -10,21 +10,23 @@ function changeStyleStatus(event) {
 	el.classList.toggle("checkBoxChecked");
 	el.classList.toggle("checkBoxUnChecked");
 
-	const taskContent = el
-		.closest(".taskContainer")
-		.querySelector(".taskContent");
+	const taskContentContainer = el.closest(".taskContainer");
+	const id = parseInt(taskContentContainer.getAttribute("id"));
+	tasks[id]["completionStatus"] = !tasks[id]["completionStatus"];
+	const taskContent = taskContentContainer.querySelector(".taskContent");
 	taskContent.classList.toggle("strikeText");
 }
 
-function createTask(id, content) {
+function createTask(id, content, completionStatus) {
 	const d = document;
 	let task = d.createElement("div");
-	task.classList.add("taskContainer");
 	task.setAttribute("id", id);
+	task.classList.add("taskContainer");
 	let taskCheckBox = d.createElement("div");
 	taskCheckBox.classList.add("checkBoxContainer");
 	let checkBox = d.createElement("div");
-	checkBox.classList.add("checkBoxUnChecked");
+	if (completionStatus) checkBox.classList.add("checkBoxChecked");
+	else checkBox.classList.add("checkBoxUnChecked");
 	let tickMark = d.createElement("div");
 	tickMark.classList.add("tickMark");
 	checkBox.appendChild(tickMark);
@@ -38,18 +40,16 @@ function createTask(id, content) {
 	let taskContent = d.createElement("p");
 	taskContent.innerHTML = content;
 	taskContent.classList.add("taskContent");
+	if (completionStatus) taskContent.classList.add("strikeText");
 	taskContentContainer.appendChild(taskContent);
 
 	let delButtonContainer = d.createElement("div");
 	delButtonContainer.classList.add("delButtonContainer");
 	let delButton = d.createElement("button");
-	delButton.classList.add("roundContainer", "buttonDelete");
-	delButton.innerHTML = "Delete";
+	delButton.classList.add("roundContainer", "buttonRemove");
+	delButton.innerHTML = "Remove";
 	delButtonContainer.appendChild(delButton);
-	delButton.setAttribute("id", id);
-	delButton.addEventListener("click", () =>
-		deleteTask(delButton.getAttribute("id"))
-	);
+	delButton.addEventListener("click", (event) => deleteTask(event));
 
 	task.appendChild(taskCheckBox);
 	task.appendChild(taskContentContainer);
@@ -58,14 +58,30 @@ function createTask(id, content) {
 	d.getElementsByClassName("taskListContainer")[0].appendChild(task);
 }
 
-document.getElementById("buttonSave").addEventListener("click", () => {
+let tasks = localStorage.getItem("tasks");
+if (tasks) {
+	tasks = JSON.parse(tasks);
+	for (let i = 0; i < tasks.length; i++) {
+		createTask(i, tasks[i]["taskContent"], tasks[i]["completionStatus"]);
+	}
+} else {
+	tasks = [];
+	localStorage.setItem("tasks", JSON.stringify([]));
+}
+
+document.getElementById("buttonAdd").addEventListener("click", () => {
 	const d = document;
 	const taskContent = d.getElementById("taskContent").value;
 	if (taskContent.length != 0) {
-		console.log(d.getElementById("taskContent").value);
 		const id =
 			d.getElementsByClassName("taskListContainer")[0].children.length;
+		let task = { taskContent: taskContent, completionStatus: false };
+		tasks.push(task);
 		createTask(id, taskContent);
 		d.getElementById("taskContent").value = "";
 	}
+});
+
+window.addEventListener("beforeunload", (event) => {
+	localStorage.setItem("tasks", JSON.stringify(tasks));
 });

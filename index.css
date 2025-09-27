@@ -4,6 +4,11 @@
 	font-weight: 350;
 	font-style: normal;
 }
+
+.heading {
+	text-align: center;
+	color: rgba(0, 0, 255, 0.733);
+}
 .strikeText {
 	text-decoration: line-through;
 	text-decoration-thickness: 1px;
@@ -45,19 +50,19 @@ button {
 }
 
 #buttonSet,
-#buttonSave {
+#buttonAdd {
 	color: white;
 	background-color: rgba(0, 0, 255, 0.751);
 	border: 0px;
 }
 
-#buttonSave {
+#buttonAdd {
 	flex-grow: 1;
 	min-width: 50px;
 	transition: opacity 0.3s, transform 0.5s;
 }
 
-#buttonSave:active {
+#buttonAdd:active {
 	opacity: 0.5;
 	transform: scale(0.60);
 
@@ -69,7 +74,7 @@ button {
 }
 
 #buttonSet:hover,
-#buttonSave:hover {
+#buttonAdd:hover {
 	background-color: rgba(0, 0, 255, 0.938);
 }
 
@@ -100,8 +105,8 @@ button {
 	text-align: justify;
 }
 
-/* Delete button styles */
-.buttonDelete {
+/* Remove button styles */
+.buttonRemove {
 	padding: 0.6rem 1.2rem;
 	border: none;
 	border-radius: 8px;
@@ -110,11 +115,11 @@ button {
 	cursor: pointer;
 }
 
-.buttonDelete:active {
+.buttonRemove:active {
   transform: scale(0.75);
 }
 
-.buttonDelete:hover {
+.buttonRemove:hover {
 	background: #d32f2f;
 }
 
@@ -132,7 +137,7 @@ button {
 	#taskContent {
 		width: 100%;
 	}
-	#buttonSave {
+	#buttonAdd {
 		width: 100%;
 	}
 
@@ -146,7 +151,7 @@ button {
 		margin-top: 1rem;
 	}
 
-	.buttonDelete {
+	.buttonRemove {
 		width: 100%;
 	}
 }
@@ -193,7 +198,7 @@ button {
 .checkBoxUnChecked .tickMark { display: none; }
 .checkBoxChecked .tickMark { display: block; }
 
-/* #buttonSave {
+/* #buttonAdd {
   position: relative;
   overflow: hidden;
   background: #2196f3;
@@ -204,7 +209,7 @@ button {
   cursor: pointer;
 }
 
-#buttonSave::after {
+#buttonAdd::after {
   content: "";
   position: absolute;
   left: 50%;
@@ -218,7 +223,7 @@ button {
   opacity: 0;
 }
 
-#buttonSave:active::after {
+#buttonAdd:active::after {
   width: 300%;
   height: 300%;
   opacity: 1;
