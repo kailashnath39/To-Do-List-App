@@ -1,0 +1,186 @@
+.alan-sans-font {
+	font-family: "Alan Sans", sans-serif;
+	font-optical-sizing: auto;
+	font-weight: 350;
+	font-style: normal;
+}
+.strikeText {
+	text-decoration: line-through;
+	text-decoration-thickness: 1px;
+}
+
+button {
+	transition: background 0.3s, transform 0.3s;
+	cursor: pointer;
+}
+.setCenter {
+	display: flex;
+	flex: 1;
+	align-items: center;
+	justify-content: center;
+}
+
+.roundContainer {
+	border-radius: 50rem;
+	padding: 10px;
+	font-size: 20px;
+}
+
+#taskContent {
+	flex: 1;
+	border: 5px solid rgba(0, 0, 255, 0.507);
+	transition: all 0.3s;
+	flex-basis: 70%;
+}
+
+#taskContent:focus {
+	border: 5px solid rgba(0, 0, 255, 0.733);
+}
+
+.eventButtons {
+	display: flex;
+	gap: 10px;
+	flex: 1;
+}
+
+#buttonSet,
+#buttonSave {
+	color: white;
+	background-color: rgba(0, 0, 255, 0.751);
+	border: 0px;
+}
+
+#buttonSave {
+	flex-grow: 1;
+	min-width: 50px;
+}
+
+#buttonSet {
+	flex-grow: 1;
+	min-width: 150px;
+}
+
+#buttonSet:hover,
+#buttonSave:hover {
+	background-color: rgba(0, 0, 255, 0.938);
+}
+
+.taskContainer {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+	padding: 1rem;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+}
+
+/* make inner containers flex-row by default */
+.checkBoxContainer,
+.taskContentContainer,
+.delButtonContainer {
+	display: flex;
+	align-items: center;
+}
+
+/* content expands in middle */
+.taskContentContainer {
+	flex: 1;
+}
+
+.taskContent {
+	text-align: justify;
+}
+
+/* Delete button styles */
+.buttonDelete {
+	padding: 0.6rem 1.2rem;
+	border: none;
+	border-radius: 8px;
+	background: #f44336;
+	color: white;
+	cursor: pointer;
+}
+
+.buttonDelete:active {
+  transform: scale(0.75);
+}
+
+.buttonDelete:hover {
+	background: #d32f2f;
+}
+
+/* .taskListContainer {
+	max-height: ;
+	overflow-y: auto;
+	overflow-x: hidden;
+} */
+
+/* Responsive behavior */
+@media (max-width: 600px) {
+	.taskContainer {
+    flex-flow: row wrap;
+	}
+	#taskContent {
+		width: 100%;
+	}
+	#buttonSave {
+		width: 100%;
+	}
+
+	.checkBoxContainer,
+	.taskContentContainer {
+    order: -1;
+	}
+
+	.delButtonContainer {
+		width: 100%; /* expand bottom button */
+		margin-top: 1rem;
+	}
+
+	.buttonDelete {
+		width: 100%;
+	}
+}
+
+.checkBoxChecked {
+	position: relative;
+	width: clamp(50px, 10vw, 75px);
+	height: clamp(50px, 10vw, 75px);
+	background-color: #2196f3;
+	border: 3px solid #2196f3;
+	border-radius: 50%;
+  	cursor: pointer;
+	transition: background 0.3s;
+}
+
+.checkBoxUnChecked {
+	position: relative;
+	width: clamp(50px, 10vw, 75px);
+	height: clamp(50px, 10vw, 75px);
+	background: none;
+	border-radius: 50%;
+	border: 3px solid #2196f3;
+  	cursor: pointer;
+	transition: background 0.3s;
+}
+
+/* .checkBox:hover {
+  background: #0a8af3;
+} */
+
+
+
+.tickMark {
+	position: absolute;
+	width: clamp(10px, 2vw, 15px);
+	height: clamp(20px, 4vw, 30px);
+	border: 3px solid white;
+	border-width: 0px 3px 3px 0px;
+	transform: rotate(45deg);
+	margin-left: 40%;
+	margin-top: 20%;
+}
+
+.checkBoxUnChecked .tickMark { display: none; }
+.checkBoxChecked .tickMark { display: block; }
