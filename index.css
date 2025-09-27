@@ -28,13 +28,14 @@ button {
 
 #taskContent {
 	flex: 1;
-	border: 5px solid rgba(0, 0, 255, 0.507);
-	transition: all 0.3s;
+	border: 4px solid rgba(0, 0, 255, 0.507);
+	transition: border 0.2s;
+	outline: none;
 	flex-basis: 70%;
 }
 
 #taskContent:focus {
-	border: 5px solid rgba(0, 0, 255, 0.733);
+	border: 4px solid rgba(0, 0, 255, 0.733);
 }
 
 .eventButtons {
@@ -53,6 +54,13 @@ button {
 #buttonSave {
 	flex-grow: 1;
 	min-width: 50px;
+	transition: opacity 0.3s, transform 0.5s;
+}
+
+#buttonSave:active {
+	opacity: 0.5;
+	transform: scale(0.60);
+
 }
 
 #buttonSet {
@@ -184,3 +192,36 @@ button {
 
 .checkBoxUnChecked .tickMark { display: none; }
 .checkBoxChecked .tickMark { display: block; }
+
+/* #buttonSave {
+  position: relative;
+  overflow: hidden;
+  background: #2196f3;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#buttonSave::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.4s ease-out, height 0.4s ease-out, opacity 0.8s;
+  opacity: 0;
+}
+
+#buttonSave:active::after {
+  width: 300%;
+  height: 300%;
+  opacity: 1;
+  transition: 0s;
+} */
+
