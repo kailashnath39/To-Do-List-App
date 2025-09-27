@@ -12,3 +12,4 @@ This App is used to save the tasks that you want to do and keep your tasks as a 
 
 1. This Application is responive.
 2. This application can be used for most of the devices.
+3. Data can be stored locally and you can open the website any time to see the stored tasks.
